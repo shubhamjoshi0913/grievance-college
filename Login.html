@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script>
+  const ref = document.referrer;
+  const origin = location.origin;
+  const cameFromIndex = ref === origin + "/" || ref === origin + "/index.html";
+
+  if (!cameFromIndex) {
+    while (true) {
+      alert("Access denied. Please enter birla-complaint.vercel.app in the browser's address bar to access it properly.");
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link rel="stylesheet" href="stylesLogin.css">
+</head>
+<body>
+   
+
+<div class="container">
+    <h1 id="Name"></h1>
+    <div class="menu">
+        <button onclick="showSection('edit-profile')">
+            <i class="fas fa-user-edit"></i>Edit Profile
+        </button>
+        <button onclick="showSection('change-password')">
+            <i class="fas fa-key"></i>Change Password
+        </button>
+        <button onclick="showSection('post-grievance')">
+            <i class="fas fa-bullhorn"></i>Post Grievance
+        </button>
+        <button onclick="showSection('my-grievance')">
+            <i class="fas fa-tachometer-alt"></i>My Grievance
+        </button>
+        <button class="sign-out" onclick="signOut()">
+            <i class="fas fa-sign-out-alt"></i>Sign Out
+        </button>
+    </div>
+
+    <!-- Edit Profile Section -->
+    <div id="edit-profile" class="content">
+        <h2>Edit Profile</h2>
+        <form id="edit-profile-form" >
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+          
+            <div id="custom-alert" class="custom-alert-box" style="display: none;">
+                <p id="custom-alert-message"></p>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="email" name="email" placeholder="Enter your old email" required>
+            </div>
+            <div class="form-group">
+                <label for="contact-number">Contact Number:</label>
+                <i class="fas fa-phone input-icon"></i>
+                <input type="tel" id="contact-number" name="contact-number" placeholder="Enter your contact number" required>
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit">Save Changes</button>
+            </div>
+            <div id="edit-profile-success" class="success-message">Profile updated successfully!</div>
+        </form>
+    </div>
+
+    <!-- Change Password Section -->
+    <div id="change-password" class="content">
+        <h2>Change Password</h2>
+        <form id="change-password-form">
+            <div class="form-group">
+                <label for="current-password">Current Password:</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="current-password" name="current-password" placeholder="Enter your current password" required>
+                <i class="fas fa-eye toggle-password" data-input="current-password"></i>
+            </div>
+            <div class="form-group">
+                <label for="new-password">New Password:</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="new-password" name="new-password" placeholder="Enter your new password" required>
+                <i class="fas fa-eye toggle-password" data-input="new-password"></i>
+                <div class="strength-indicator" id="strength-indicator">
+                    <span class="strength-bar"></span>
+                    <span class="strength-bar"></span>
+                    <span class="strength-bar"></span>
+                </div>
+                <div id="password-requirements">
+                    <p>Password must contain:</p>
+                    <ul>
+                        <li id="length-requirement" class="invalid">At least 8 characters</li>
+                        <li id="uppercase-requirement" class="invalid">One uppercase letter</li>
+                        <li id="number-requirement" class="invalid">One number</li>
+                        <li id="special-char-requirement" class="invalid">One special character</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm New Password:</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password" required>
+                <i class="fas fa-eye toggle-password" data-input="confirm-password"></i>
+            </div>
+            <div class="form-group">
+                <button type="submit">Change Password</button>
+            </div>
+            <div id="change-password-success" class="success-message">Password changed successfully!</div>
+        </form>
+    </div>
+
+    <!-- Post Grievance Section -->
+    <div id="post-grievance" class="content">
+        <h2>Post Grievance</h2>
+        <form id="post-grievance-form" class="grievance-form" style="display: block;">
+            <div class="form-group">
+                <label for="grievant-type">Grievant Type:</label>
+                <input type="text" id="grievant-type" name="grievant-type" readonly style="font-size: 0.8em; padding: 5px; width: 30%; max-width: 100px;">
+            </div>
+            <div class="form-group">
+                <label for="grievant-name">Name:</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="grievant-name" name="grievant-name" readonly placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="grievance-title">Title:</label>
+                <i class="fas fa-pencil-alt input-icon"></i>
+                <input type="text" id="grievance-title" name="grievance-title" placeholder="Enter grievance title" required>
+            </div>
+            <div class="form-group">
+                <label for="grievance-description">Description:</label>
+                <i class="fas fa-file-alt input-icon"></i>
+                <textarea id="grievance-description" name="grievance-description" rows="4" placeholder="Enter grievance description" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Grievance</button>
+            </div>
+            <div id="post-grievance-success" class="success-message">Grievance submitted successfully!</div>
+        </form>
+    </div>
+
+
+
+
+    <!-- My Grievance Section -->
+    <div id="my-grievance" class="content">
+        <h2>My Grievance</h2>
+       
+        <table id="my-grievance-table">
+            <thead>
+                <tr>
+                    <th>SR No.</th>
+                    <th>Grievant ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Grivance And Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Grievance details will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="modal-overlay"></div>
+<div id="grievance-modal">
+    <div class="modal-header">
+        <h2>Grievance Details</h2>
+        <span id="close-modal" class="close-button">&times;</span>
+    </div>
+    <div class="modal-content">
+        <p><strong>Grievant ID:</strong> <span id="modal-grievant-id"></span></p>
+        <p><strong>Name:</strong> <span id="modal-grievant-name"></span></p>
+        <p><strong>Title:</strong> <span id="modal-title"></span></p>
+        <p><strong>Description:</strong> <span id="modal-description"></span></p>
+        <p><strong>Date:</strong> <span id="modal-date"></span></p>
+        <p><strong>Status:</strong> <span id="modal-status"></span></p>
+        
+        <!-- Table for Reply Date and Reply -->
+        <table style="width: 100%; margin-top: 10px; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <!-- <th style="width: 30%; border: 1px solid #ccc; padding: 8px;">Reply Date</th> -->
+                    <th style="width: 70%; border: 1px solid #ccc; padding: 8px;">Reply</th>
+                    <!-- <th style="width: 30%; border: 1px solid #ccc; padding: 8px;">Feedback</th> -->
+                    <th style="width: 30%; border: 1px solid #ccc; padding: 8px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td style="border: 1px solid #ccc; padding: 8px;" id="modal-reply-date"></td> -->
+                    <td style="border: 1px solid #ccc; padding: 8px;" id="modal-reply"></td>
+                    <!-- <td style="border: 1px solid #ccc; padding: 8px;" id="modal-feedback">No feedback</td> -->
+                    <td style="border: 1px solid #ccc; padding: 8px;">
+                        <button id="reopen-button" style="color: white; background-color: #e67e22; padding: 5px; border: none; border-radius: 4px; cursor: pointer;">Re-Open</button>
+                        <button id="satisfied-button" style="color: white; background-color: #3498db; padding: 5px; border: none; border-radius: 4px; cursor: pointer;">Satisfied</button>
+                    </td>
+                </tr>
+                   <!-- Feedback Row, added dynamically on Re-Open click -->
+                   <tr id="feedback-row" style="display: none;">
+                    <td colspan="4" style="border: 1px solid #ccc; padding: 8px;">
+                        <textarea id="feedback-text" rows="3" style="width: 100%" placeholder="Write your feedback here..."></textarea>
+                        <button id="submit-feedback-button" style="margin-top: 5px; color: white; background-color: #1abc9c; padding: 5px; border: none; border-radius: 4px; cursor: pointer;">Submit Feedback</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal overlay (optional) -->
+<div id="modal-overlay" class="modal-overlay" style="display: none; background: rgba(0, 0, 0, 0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%;"></div>
+
+
+<div class="notification" id="notification" style="display: none;">
+    <p id="notificationMessage"></p>
+    <button id="notificationOkButton">OK</button>
+</div>
+
+<script type="module" src="scriptLogin.js"></script>
+
+</body>
+</html>
+

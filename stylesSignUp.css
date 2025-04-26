@@ -1,0 +1,164 @@
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Start lower */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End in place */
+    }
+}
+body {
+    background-color: lightblue;
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed when scrolling */
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: black;
+}
+
+.form-container {
+    position: relative;
+    width: 550px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: whitesmoke; /* Set background to smoky black with transparency */
+    animation: fadeInUp 0.6s ease-in-out; /* Apply the fade-in animation */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative; /* Make sure the icon is positioned relative to the form-group */
+    color: black;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 8px 8px 8px 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
+}
+
+.icon {
+    position: absolute;
+    left: 10px; /* Position the icon to the left */
+    top: 70%; /* Center the icon vertically */
+    transform: translateY(-50%); /* Adjust vertical position */
+    color: #0d0d0e;
+    font-size: 16px;
+}
+
+.form-group input[type="radio"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.form-group .gender-label {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.form-group button {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.back-button {
+    position: absolute; /* Position relative to the form */
+    top: 10px; /* Aligns with the top of the form */
+    left: 10px; /* Aligns with the left of the form */
+    background-color: white;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: rgb(111, 106, 106);
+    transform: translateY(-3px);
+}
+
+
+.otp-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between OTP group and button */
+    margin-top: 10px;
+}
+
+.otp-group {
+    display: flex;
+    gap: 4px; /* Space between each OTP box */
+}
+
+.otp-input {
+    width: 10px; /* Smaller width */
+    height: 30px; /* Smaller height */
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.otp-input:focus {
+    border-color: #4CAF50; /* Change border color on focus */
+}
+
+.email-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Define the "Verified" button style */
+.verified {
+    background-color: orange;
+    color: #fff;
+    cursor: not-allowed; /* Change cursor to indicate it's disabled */
+    pointer-events: none; /* Prevent any click actions */
+}
+
+/* Optional: Add a hover effect if you want to indicate that the button can't be clicked */
+.verified:hover {
+    background-color: orange; /* Keep the color consistent even when hovered */
+    opacity: 0.7; /* Slightly fade the button to indicate it's inactive */
+}

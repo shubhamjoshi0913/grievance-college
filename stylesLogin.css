@@ -1,0 +1,669 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 95%; /* Increase overall width to take more screen space */
+    max-width: 1200px; /* Increase max-width for larger screens */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 80px; /* Offset to account for the fixed navbar */
+    padding: 20px; /* Padding for spacing within the container */
+    box-sizing: border-box;
+}
+
+/* Top Navbar Styles */
+.menu {
+    width: 100%;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.menu button {
+    background-color: transparent;
+    color: #ecf0f1;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.menu button:hover {
+    background-color: #1abc9c;
+}
+
+.menu button i {
+    margin-right: 8px;
+}
+
+
+/* Mobile View (Enable Swiping) */
+@media (max-width: 768px) {
+    .menu {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent wrapping */
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 15px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Hide scrollbar for a cleaner look */
+    .menu::-webkit-scrollbar {
+        display: none;
+    }
+
+     /* Increase Font Size on Mobile */
+     .menu button {
+        font-size: 1em; /* Increase font size */
+        padding: 12px 24px; /* Adjust padding for better spacing */
+    }
+}
+.sign-out {
+    background-color: #e74c3c;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.sign-out:hover {
+    background-color: #c0392b;
+}
+
+/* Centered Name */
+#Name {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+
+
+
+/* Main Content Styles */
+.content {
+    display: none;
+    padding: 20px;
+    border: 2px solid #ccc; /* Add a full border outline */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    box-sizing: border-box; /* Ensures padding is inside the border */
+    margin-top: 20px;
+}
+
+.content.active {
+    display: block;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group button:hover {
+    background-color: #16a085;
+}
+
+/* Notification, Modal, and Success Message Styles */
+.notification,
+.success-message,
+.custom-alert-box {
+    display: none;
+    background-color: #1abc9c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.strength-indicator {
+    display: flex;
+    margin-top: 10px;
+}
+.strength-bar {
+    flex: 1;
+    height: 5px;
+    margin: 0 2px;
+    background-color: #ddd;
+}
+.strength-bar.medium {
+    background-color: #f0ad4e;
+}
+.strength-bar.strong {
+    background-color: #28a745;
+}
+#password-requirements ul {
+    list-style: none;
+    padding-left: 0;
+}
+#password-requirements li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+#password-requirements li i {
+    margin-right: 10px;
+    color: #999;
+}
+#password-requirements li.valid {
+    color: green;
+}
+#password-requirements li.invalid {
+    color: red;
+}
+
+.notification button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-overlay {
+    display: none;
+}
+
+#grievance-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    z-index: 10;
+}
+
+#grievance-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.close-button {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #e74c3c;
+}
+
+#grievance-modal .modal-content p {
+    margin: 10px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th,
+table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+table th {
+    background-color: #f4f4f9;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Icon Alignment and Password Toggle */
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group select,
+.form-group textarea {
+    padding-left: 35px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: black;
+}
+
+
+
+#my-grievance {
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-height: 400px; /* Set a max height for the grievance section */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+#my-grievance h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#my-grievance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+#my-grievance-table th, #my-grievance-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+#my-grievance-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+#my-grievance-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#my-grievance-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Adjust the width of the Grievant ID column */
+#my-grievance-table th:nth-child(2),
+#my-grievance-table td:nth-child(2) {
+    width: 150px; /* Adjust this width as necessary */
+}
+
+#my-grievance-table th, #my-grievance-table td {
+    padding: 12px 15px;
+}
+
+#my-grievance-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#my-grievance-table th {
+    background-color: rgb(44, 62, 80);
+    color: white;
+}
+
+
+
+
+#grievance-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Maximum width */
+    background-color:rgb(44, 62, 80);
+    border: 1px solid rgb(9, 9, 9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it's above other content */
+    display: none; /* Hidden by default */
+     color: white; 
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below the modal */
+    display: none; /* Hidden by default */
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: #1abc9c; /* Green background for the header */
+    color: white; /* Optional: change text color to white for contrast */
+}
+
+.modal-content {
+    padding: 20px; /* Inner padding for content */
+    margin-left: 20px; /* Shift content slightly to the right */
+    background-color: #2c3e50; /* Light green background */
+    border-radius: 5px; /* Optional: round the corners */
+    font-size: 1.1em;
+}
+.close-button {
+    cursor: pointer;
+    font-size: 24px; /* Increased font size for a larger cross */
+    color: white; /* Text color */
+    background-color: red; /* Background color of the square box */
+    border: none; /* No border */
+    padding: 2px; /* Adjust padding as needed */
+    border-radius: 3px; /* Optional: round the corners */
+    width: 24px; /* Increased width */
+    height: 24px; /* Increased height */
+    text-align: center; /* Center the text */
+    line-height: 20px; /* Align text vertically */
+    margin-left: 10px; /* Space from the title */
+}
+
+.close-button:hover {
+    background-color: darkred; /* Change color on hover for better UX */
+}.modal-content table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+    border: 1px solid #ccc; /* Border for table cells */
+    padding: 8px; /* Padding for table cells */
+    text-align: left; /* Align text to the left */
+}
+
+.modal-content th:nth-child(1) {
+    width: 20%; /* Width for Reply Date column */
+}
+
+.modal-content th:nth-child(2) {
+    width: 80%; /* Width for Reply column */
+}
+/* Centered custom alert box */
+ 
+.custom-alert-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Red background for error */
+    color: red;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000; /* Ensure it's above other elements */
+    width: 300px;
+    font-size: 16px;
+    border: 2px solid black; /* Black outline */
+}
+
+
+.notification {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(232, 201, 201);
+    border: 1px solid #ba3232;
+    border-radius: 5px;
+    padding: 20px; /* Adjusted for spacing */
+    box-shadow: 0 2px 10px rgba(186, 15, 15, 0.1);
+    z-index: 1000; /* Ensure it's above other elements */
+    text-align: center; /* Center the text */
+    color: darkred; 
+    min-width: 200px;
+}
+
+.notification button {
+    margin-top: 10px; /* Space between text and button */
+    padding: 5px 10px; /* Button padding */
+    background-color: #ba3232;
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.notification button:hover {
+    background-color: #a52828; /* Darker on hover */
+}
+
+
+
+    /* Modal overlay */
+    #modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+
+    /* Grievance modal */
+    #grievance-modal {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        background-color: white;
+        border-radius: 8px;
+        width: 80%;  /* Increase width */
+        max-width: 1000px; /* Set a max width for larger screens */
+        padding: 20px;  /* Add more padding for better spacing */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        overflow-y: auto; /* Allows scrolling if content overflows */
+        max-height: 80vh; /* Set a max height to avoid overflow */
+    }
+
+    /* Modal header */
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Close button */
+    .close-button {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Modal content */
+    .modal-content {
+        margin-top: 20px;
+    }
+
+    /* Table styling */
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    table th, table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+/* Button styling */
+#reopen-button,
+#satisfied-button,
+#submit-feedback-button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#reopen-button {
+    background-color: #e67e22;
+    color: white;
+    margin-right: 10px; /* Adds gap between Re-Open and Satisfied buttons */
+}
+
+#satisfied-button {
+    background-color: #3498db;
+    color: white;
+}
+
+#submit-feedback-button {
+    background-color: #1abc9c;
+    color: white;
+    margin-top: 5px;
+}
+
+
+    /* Feedback textarea */
+     /* Feedback textarea styling */
+     #feedback-text {
+        width: 100%;
+                /* Further reduce padding for a smaller appearance */
+        height: 150px;
+        min-height: 200px;        /* Set a smaller height */
+        font-size: 20px;     /* Slightly smaller font size */
+        resize: vertical;    /* Allow resizing only vertically */
+        margin-top: 5px;
+    }
+
+    /* Reply section text styling */
+#modal-reply {
+    font-size: 18px; /* Increase font size for reply and feedback text */
+    line-height: 1.5; /* Improve readability by adjusting line height */
+}
+
+/* Optional: Increase font size for any strong or emphasized text */
+#modal-reply strong {
+    font-size: 19px; /* Slightly larger for emphasis */
+}
+/* Styling user replies and feedback in the modal reply section */
+#modal-reply em {
+    font-style: normal;  /* Remove italic style */
+    font-size: 18px;     /* Increase font size for better readability */
+    color: white;         /* Optional: set a distinct color for visibility */
+    line-height: 1.6;    /* Optional: add line spacing for readability */
+}
+
+/* Optional: Add padding or margin between different replies */
+#modal-reply em + em {
+    margin-top: 10px;
+    display: block;
+}
+
+#modal-reply strong {
+    font-weight: normal;  /* Remove bold styling */
+    font-size: 18px;      /* Increase font size for readability */
+    color: white;          /* Optional: distinct color for readability */
+}
+
+/* Custom Alert Container */
+#custom-alert-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+/* Individual Alert Styles */
+.custom-alert {
+    background-color: #f44336; /* Red background for errors */
+    color: #fff; /* White text */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    animation: fadeOut 5s forwards; /* Fade-out animation */
+}
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+
+
+    
+

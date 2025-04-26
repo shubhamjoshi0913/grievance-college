@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('bgimg.jpg');
+    background-color: #f0f2f5;
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed when scrolling */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-custom {
+    background: linear-gradient(45deg, #d36767, #9a9a48, #e14b4b); /* Custom gradient */
+}
+.navbar-custom .nav-link {
+    color: white; /* White text color for nav links */
+}
+.navbar-custom .navbar-brand {
+    color: rgb(87, 6, 6); /* White text color for the brand */
+}
+.navbar-custom .nav-link:hover {
+    color: #2d19cc; /* Yellow text color on hover */
+}
+.contain {
+    display: flex;
+    justify-content: flex-end; /* Aligns the login container to the right */
+    align-items: center;
+    height: calc(100vh - 56px); /* Adjust height to account for navbar */
+    padding-right: 20px; /* Optional: Add some space from the right edge */
+}
+.index-container {
+    background-color: transparent; /* Transparent box */
+    padding: 30px; /* Increased padding for spacing */
+    min-height: 450px; /* Adjusted minimum height */
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.8); /* White border with slight transparency */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    width: 350px; /* Increased width */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transition for fading in */
+}
+.index-container h2 {
+    text-align: center;
+    margin-bottom: 25px; /* Increased bottom margin */
+    color: white; /* Ensure the title is visible */
+}
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    color: rgb(248, 245, 245);
+    background-color: transparent;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: .375rem;
+}
+.form-group {
+    margin-bottom: 20px; /* Increased spacing between form groups */
+}
+.form-group label {
+    color: white; /* Ensure labels are visible */
+    margin-bottom: 5px; /* Spacing below label */
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px; /* Increased padding inside inputs */
+    background-color: transparent; /* Transparent background for input fields */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
+    color: rgba(255, 255, 255, 0.7); /* White text inside input fields */
+    box-sizing: border-box;
+    border-radius: 6px; /* Slightly rounded corners */
+}
+
+.form-group input::placeholder, .form-group select option {
+    color: rgba(255, 255, 255, 0.7); /* Lighter white for placeholders */
+}
+
+.form-group select option {
+    background-color: rgba(0, 0, 0, 0.5); /* Add transparency to dropdown options */
+    color: white; /* Ensure the text is visible in the dropdown */
+}
+.login-btn {
+    width: 100%;
+    padding: 12px; /* Increased padding inside button */
+    background-color: rgba(23, 120, 210, 0.7); /* Transparent background for the button */
+    color: white; /* White text for the button */
+    border: 1px solid rgba(23, 120, 210, 0.7); /* Semi-transparent white border */
+    border-radius: 6px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Button transition */
+}
+.login-btn:hover {
+    background-color: rgba(8, 59, 107, 0.7); /* Light background on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+
+/* 📱 Center on mobile devices */
+@media (max-width: 768px) {
+    .contain {
+        justify-content: center; /* Centers on smaller screens */
+    }
+}
+
+
+.forgot-password {
+    text-align: center; /* Center the link horizontally */
+    margin-top: 10px; /* Optional: Add spacing above the link */
+}
+.forgot-password a {
+    color: white; /* White link color */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Transition for link */
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+    color: rgba(32, 129, 220, 0.7); /* Lighter white on hover */
+}
+body.loaded .index-container {
+    opacity: 1;
+    transform: scale(1); /* Smooth fade-in */
+}
+
+.navbar-brand {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+    color: white;
+    position: relative;
+    font-size: 30px; /* Increase font size */
+    line-height: 40px; /* Adjust line height if needed */
+}
+
+.navbar-brand span {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

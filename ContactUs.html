@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+   
+    <link rel="stylesheet" href="stylesContactUs.css">
+</head>
+<body>
+
+<div class="container">
+    <section class="location">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500.4215199543825!2d79.55172095757308!3d29.35694702046918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a099dbdc0befa7%3A0xa08407c1dac1f3ac!2sBirla%20Institute%20of%20Applied%20Sciences%2C%20Bhimtal-263136%20(Uttarakhand)!5e0!3m2!1sen!2sin!4v1729702251318!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </section>
+
+        <section class="contact-us">
+          <div class="row">
+          <div class="contact-col">
+              <div>
+                  <i class="fa fa-home"></i>
+                  <span>
+                      <h5>Address</h5>
+                      <p>Bhimtal, Nainital, Uttarakhand-263136 India</p>
+                  </span>
+              </div>
+              <div>
+                  <i class="fa fa-phone"></i>
+                  <span>
+                      <h5>Contact Number</h5>
+                      <p>9412996069</p>
+                      <p> 9415364502</p>
+                  </span>
+              </div>
+              <div>
+                  <i class="fa fa-envelope-o"></i>
+                  <span>
+                      <h5>E-mail</h5>
+                      <p>info@birlainstitute.co.in</p>
+                  </span>
+                  </div>
+              </div>
+
+      <div>
+                  
+                      <p>This project is designed and developed by</p>
+                      <p> Pawan Kumar Arya(CSE,2021-2025)</p>
+          <p>Shubham Joshi(CSE,2021-2025)</p>
+          <p> Saurav Tanwal(CSE,2021-2025)</p>
+          <p> Deekshit Pandey(CSE,2021-2025)</p>
+                  
+          
+              </div>
+
+              
+              <div class="contact-col">
+                <form id="contactForm" method="POST">
+                    <h2>Have A Query?</h2>
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required>
+                    <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+                    <input type="text" name="subject" id="subject" placeholder="Enter your subject" required>
+                    <textarea rows="8" name="message" id="message" placeholder="Enter your message" required></textarea>
+                    <button type="submit" class="hero-btn red-btn">Send Message</button>
+                </form>
+                <div id="successMessage" style="display:none; color: green; margin-top: 10px;">
+                    Your message has been successfully sent!
+                </div>
+                
+              </div>              
+
+          </div>
+
+        </section>
+</div>
+<script type="module" src="scriptContactUs.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="stylesSignUp.css">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2><a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    Sign Up</h2>
+
+    <div class="form-group">
+        
+        <label for="role">Role:</label>
+        <select id="role" onchange="toggleForm()">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="staff">Non-Teaching Staff</option>
+        </select>
+    </div>
+
+    <!-- Student SignUp Form -->
+    <form id="student-form" class="signup-form" style="display: block;">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <i class="fas fa-user icon"></i>
+            <input type="text" id="student-name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender:</label>
+            <label class="gender-label"><input type="radio" name="gender" value="male" required> Male</label>
+            <label class="gender-label"><input type="radio" name="gender" value="female" required> Female</label>
+            <label class="gender-label"><input type="radio" name="gender" value="other" required> Other</label>
+        </div>
+
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <i class="fas fa-book icon"></i>
+            <select id="course" name="course" required>
+                <option value="">Select a Course</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="MCA">MCA</option>
+                <option value="BCA">BCA</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="batch">Batch:</label>
+            <i class="fas fa-calendar icon"></i>
+            <input type="text" id="batch" name="batch" placeholder="Enter batch" required>
+        </div>
+
+        <div class="form-group">
+            <label for="roll-no">Roll No.:</label>
+            <i class="fas fa-id-badge icon"></i>
+            <input type="text" id="roll-no" name="roll-no" placeholder="Enter roll number" required>
+            <div id="roll-no-error" style="color: red; display: none;"></div>
+        </div>
+
+        
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <div class="email-wrapper">
+            <i class="fas fa-envelope icon"></i>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div id="email-error" style="display: none; color: red;"></div>
+
+        </div>
+    </div>
+
+      
+
+
+    <div class="form-group">
+        <label for="contact-number">Contact Number:</label>
+        <i class="fas fa-phone icon"></i>
+        <input type="tel" id="contact-number" name="contact-number" placeholder="Enter your contact number" required>
+        <div id="contact-number-error" style="display: none; color: red;"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <i class="fas fa-lock icon"></i>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    </div>
+        
+    <div class="form-group">
+        <button type="submit" id="signup-button">Sign Up</button>
+    </div>
+
+    <div id="success-message" style="display: none; color: black;">
+        Sign Up Successful! Redirecting to the homepage...
+    </div>
+    </form>
+
+
+
+
+
+    <!-- Teacher SignUp Form -->
+    <form id="teacher-form" class="signup-form" style="display: none;">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <i class="fas fa-user icon"></i>
+            <input type="text" id="teacher-name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender:</label>
+            <label class="gender-label"><input type="radio" name="gender" value="male" required> Male</label>
+            <label class="gender-label"><input type="radio" name="gender" value="female" required> Female</label>
+            <label class="gender-label"><input type="radio" name="gender" value="other" required> Other</label>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <i class="fas fa-building icon"></i>
+            <input type="text" id="department" name="department" placeholder="Enter your department" required>
+        </div>
+
+        <div class="form-group">
+            <label for="designation">Designation:</label>
+            <i class="fas fa-tag icon"></i>
+            <input type="text" id="designation" name="designation" placeholder="Enter your designation" required>
+        </div>
+
+       
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <div class="email-wrapper">
+            <i class="fas fa-envelope icon"></i>
+            <input type="email" id="teacher-email" name="email" placeholder="Enter your email" required>
+            <div id="teacher-email-error" class="error-message" style="display:none; color:red;"></div>
+           
+        </div>
+    </div>
+
+   
+
+
+        <div class="form-group">
+            <label for="contact-number">Contact Number:</label>
+            <i class="fas fa-phone icon"></i>
+            <input type="tel" id="teacher-contact" name="contact-number" placeholder="Enter your contact number" required>
+            <div id="teacher-contact-error" class="error-message" style="display:none; color:red;"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <i class="fas fa-lock icon"></i>
+            <input type="password" id="teacher-password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="signup-button2">Sign Up</button>
+        </div>
+
+        <div id="success-message" style="display: none; color: black;">
+            Sign Up Successful! Redirecting to the homepage...
+        </div>
+    </form>
+
+    <!-- Non-Teaching Staff SignUp Form -->
+    <form id="staff-form" class="signup-form" style="display: none;">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <i class="fas fa-user icon"></i>
+            <input type="text" id="staff-name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender:</label>
+            <label class="gender-label"><input type="radio" name="gender" value="male" required> Male</label>
+            <label class="gender-label"><input type="radio" name="gender" value="female" required> Female</label>
+            <label class="gender-label"><input type="radio" name="gender" value="other" required> Other</label>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <i class="fas fa-building icon"></i>
+            <input type="text" id="staff-department" name="department" placeholder="Enter your department" required>
+        </div>
+
+        <div class="form-group">
+            <label for="designation">Designation:</label>
+            <i class="fas fa-tag icon"></i>
+            <input type="text" id="staff-designation" name="designation" placeholder="Enter your designation" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <div class="email-wrapper">
+                <i class="fas fa-envelope icon"></i>
+                <input type="email" id="staff-email" name="email" placeholder="Enter your email" required>
+                <div id="staff-email-error" class="error-message" style="display:none; color:red;  margin-top: 5px;"></div>
+               
+            </div>
+        </div>
+    
+      
+
+        <div class="form-group">
+            <label for="contact-number">Contact Number:</label>
+            <i class="fas fa-phone icon"></i>
+            <input type="tel" id="staff-contact" name="contact-number" placeholder="Enter your contact number" required>
+            <div id="staff-contact-error" class="error-message" style="display:none; color:red;"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <i class="fas fa-lock icon"></i>
+            <input type="password" id="staff-password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="signup-button3">Sign Up</button>
+        </div>
+
+        <div id="success-message" style="display: none; color: black;">
+            Sign Up Successful! Redirecting to the homepage...
+        </div>
+        
+    </form>
+</div>
+
+
+  <!-- Firebase JS SDK Initialization -->
+<script type="module" src="scriptSignUp.js"defer></script>
+ 
+
+
+</body>
+
+</html><script>
+    function toggleForm() { 
+        var role = document.getElementById("role").value;
+        document.getElementById("student-form").style.display = "none";
+        document.getElementById("teacher-form").style.display = "none";
+        document.getElementById("staff-form").style.display = "none";
+
+        if (role === "student") {
+            document.getElementById("student-form").style.display = "block";
+        } else if (role === "teacher") {
+            document.getElementById("teacher-form").style.display = "block";
+        } else if (role === "staff") {
+            document.getElementById("staff-form").style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>

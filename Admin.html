@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <script>
+  const ref = document.referrer;
+  const origin = location.origin;
+  const cameFromIndex = ref === origin + "/" || ref === origin + "/index.html";
+
+  if (!cameFromIndex) {
+    while (true) {
+      alert("Access denied. Please enter birla-complaint.vercel.app in the browser's address bar to access it properly.");
+    }
+  }
+    </script>
+
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+   <link rel="stylesheet" href="stylesAdmin.css">
+</head>
+<body>
+
+<div class="admin-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h1>Admin Panel</h1>
+        <a data-target="add-grievance-member"><i class="fas fa-user-plus"></i>Add Grievance Cell Member</a>
+
+        <!-- Pending Approvals Dropdown -->
+        <div class="dropdown">
+            <span><i class="fas fa-clock"></i> Pending Approvals</span>
+            <span class="dropdown-arrow">▶</span>
+            <div class="dropdown-content">
+                <a data-target="students-pending"><i class="fas fa-user-graduate"></i> Students</a>
+                <a data-target="teachers-pending"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
+                <a data-target="non-teaching-pending"><i class="fas fa-users-cog"></i> Non-Teaching Staff</a>
+            </div>
+        </div>
+
+        <!-- Approved Users Dropdown -->
+        <div class="dropdown">
+            <span><i class="fas fa-check-circle"></i> Approved Users</span>
+            <span class="dropdown-arrow">▶</span>
+            <div class="dropdown-content">
+                <a data-target="students-approved"><i class="fas fa-user-graduate"></i> Students</a>
+                <a data-target="teachers-approved"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
+                <a data-target="non-teaching-approved"><i class="fas fa-users-cog"></i> Non-Teaching Staff</a>
+            </div>
+        </div>
+
+        
+        <a data-target="change-password"><i class="fas fa-lock"></i> Change Password</a>
+        <a data-target="grievances"><i class="fas fa-exclamation-triangle"></i> Grievances</a>
+        <a data-target="all-grievance-members"><i class="fas fa-users"></i> All Grievance Members</a>
+        <a data-target="contact-messages"><i class="fas fa-envelope"></i> Contact Message</a>
+
+    </div>
+    <button class="mobile-toggler" onclick="toggleSidebar()">☰ Menu</button>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2>Admin Dashboard</h2>
+        <div id="success-message" style="display: none; color: green; text-align: center; margin-bottom: 20px;">
+            Action was successful!
+        </div>
+        
+        
+        <!-- Sign Out Button -->
+        <button class="sign-out-btn" id="sign-out-btn">Sign Out</button>
+
+
+        <!-- Contact Messages Section -->
+<div id="contact-messages" class="content-section" style="display: none;">
+    <h2>Contact Messages</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody id="contactMessagesTable">
+            <!-- Messages will be inserted here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    // Function to toggle sections based on the sidebar click
+    document.querySelectorAll(".sidebar a, .dropdown-content a").forEach(link => {
+        link.addEventListener("click", function () {
+            document.querySelectorAll(".content-section").forEach(section => {
+                section.style.display = "none"; // Hide all sections
+            });
+
+            const targetId = this.getAttribute("data-target");
+            if (targetId) {
+                document.getElementById(targetId).style.display = "block"; // Show selected section
+            }
+        });
+    });
+
+    // Sample Contact Messages (Replace with Firebase data fetch)
+    document.addEventListener("DOMContentLoaded", function () {
+        const contactMessagesTable = document.getElementById("contactMessagesTable");
+
+       
+
+        sampleMessages.forEach(msg => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${msg.name}</td>
+                <td>${msg.email}</td>
+                <td>${msg.subject}</td>
+                <td>${msg.message}</td>
+                <td>${msg.date}</td>
+            `;
+            contactMessagesTable.appendChild(row);
+        });
+    });
+</script>
+
+
+        <!-- Add Grievance Cell Member Section -->
+        <div id="add-grievance-member" class="content-section">
+            <h2>Add Grievance Cell Member</h2>
+            <form id="add-member-form">
+                <div class="form-group">
+                    <label for="member-name">Name</label>
+                    <div class="input-container">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="member-name" name="name" placeholder="Enter name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <label class="gender-label">
+                        <input type="radio" id="male" name="gender" value="male" required> Male
+                    </label>
+                    <label class="gender-label">
+                        <input type="radio" id="female" name="gender" value="female" required> Female
+                    </label>
+                    <label class="gender-label">
+                        <input type="radio" id="other" name="gender" value="other" required> Other
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="member-designstion">Degination</label>
+                    <div class="input-container">
+                        <i class="fas fa-tag"></i>
+                        <input type="text" id="member-degination" name="degination" placeholder="Enter degination" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="member-email">Email</label>
+                    <div class="input-container">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="member-email" name="email" placeholder="Enter email" required>
+                    </div>
+                      <!-- Error message for email -->
+                       <div id="email-error" class="error-message" style="display: none;">This email is already in use. Please enter a different email.</div>
+                </div>
+                <div class="form-group">
+                    <label for="member-contact">Contact No.</label>
+                    <div class="input-container">
+                        <i class="fas fa-phone icon"></i>
+                        <input type="tel" id="member-contact" name="contact" placeholder="Enter number" required>
+                    </div>
+                      <!-- Error message for contact -->
+                      <div id="contact-error" class="error-message" style="display: none;">This contact number is already in use. Please enter a different number.</div>
+                      <div id="contact-length-error" class="error-message" style="display: none;">Please enter a valid 10-digit contact number.</div>
+            </div>
+              
+
+                <div class="form-group">
+                    <label for="member-password">Password</label>
+                    <div class="input-container">
+                        <i class="fas fa-lock icon"></i>
+                        <input type="password" id="member-password" name="password" placeholder="Enter password" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button id="submit-button" type="submit">Add Member</button>
+                </div>
+                <div id="form-success-message" style="display: none;">Member added successfully!</div>
+            </form>
+        </div>
+
+        <!-- Pending Approvals Sections -->
+        <div class="content-section" id="students-pending">
+            <h4>Pending Student Approvals</h4>
+            <!-- Add content for pending student approvals -->
+        <table id="studentTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Course</th>
+                        <th>Batch</th>
+                        <th>Roll No</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <!-- Row will be dynamically inserted here -->  
+                </tbody>
+            </table>
+        </div>
+        
+
+        
+    
+
+
+
+        <div class="content-section" id="teachers-pending">
+            <h4>Pending Teacher Approvals</h4>
+            <!-- Add content for pending teacher approvals -->
+            <table id="teacherTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section" id="non-teaching-pending">
+            <h4>Pending Non-Teaching Staff Approvals</h4>
+            <!-- Add content for pending non-teaching staff approvals -->
+            <table id="staffTable">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Approved Users Sections -->
+        <div class="content-section" id="students-approved">
+            <h4>Approved Students</h4>
+            <!-- Add content for approved students -->
+            <table id="approvedStudents">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Course</th>
+                        <th>Batch</th>
+                        <th>Roll No</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- <script>
+           // Function to update the displayed user data
+        function updateUserData(name, email, mobileNo) {
+            document.getElementById('name').innerText = name;
+            document.getElementById('email').innerText = email;
+            document.getElementById('mobile-no').innerText = mobileNo;
+        }
+
+        // Load approved user data from local storage
+        window.onload = function() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (userData) {
+                updateUserData(userData.name, userData.email, userData.mobileNo);
+            }
+        }
+
+        </script> -->
+ 
+
+
+        <div class="content-section" id="teachers-approved">
+            <h4>Approved Teachers</h4>
+            <!-- Add content for approved teachers -->
+            <table id="approvedTeachers">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section" id="non-teaching-approved">
+            <h4>Approved Non-Teaching Staff</h4>
+            <!-- Add content for approved non-teaching staff -->
+            <table id="approvedStaff">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        
+        <!-- Edit User Profile Section -->
+
+
+
+
+
+<!-- Change Password Section -->
+<div class="content-section" id="change-password">
+    <h4>Change Password</h4>
+    <form id="change-password-form">
+        <div class="form-group">
+            <label for="current-password">Current Password:</label>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="current-password" name="current-password" placeholder="Enter current password" required>
+                <i1 class="fas fa-eye toggle-password" data-input="current-password"></i1>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="new-password">New Password:</label>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
+                <i1 class="fas fa-eye toggle-password" data-input="new-password"></i1>
+            </div>
+            <ul id="password-conditions" style="margin-top: 10px;">
+                <li id="min-length" style="color: red;">At least 8 characters long.</li>
+                <li id="uppercase" style="color: red;">At least one uppercase letter.</li>
+                <li id="number" style="color: red;">At least one number.</li>
+                <li id="special-char" style="color: red;">At least one special character (e.g., @, #, $, %, etc.).</li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <label for="confirm-new-password">Confirm New Password:</label>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="confirm-new-password" name="confirm-new-password" placeholder="Confirm new password" required>
+                <i1 class="fas fa-eye toggle-password" data-input="confirm-new-password"></i1>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Change Password</button>
+        </div>
+        <div id="password-error" style="color: red; text-align: center; margin-top: 10px;"></div>
+        <div id="change-password-success-message" style="display: none; color: green; text-align: center; margin-top: 10px;">
+            Password changed successfully!
+        </div>
+    </form>
+    
+</div>
+
+
+
+        <!-- Grievances Section -->
+<div class="content-section" id="grievances">
+     <!-- Search Bar -->
+<div class="search-container">
+    <input type="text" id="search-bar" placeholder="Search by Grievant ID or Name">
+    <i class="fa fa-search search-icon"></i>
+</div>
+    <h4>Grievances</h4>
+    <table id="grievance-table">
+        <thead>
+            <tr>
+                <th>SR NO.</th>
+                <th>Grievance Number</th>
+                <th>Grievant Type</th>
+                <th>Grievant ID</th>
+                <th>Grievant Name</th>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Reply OR View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Grievance Modal -->
+<div id="modal" class="modal">
+    <p id="modal-grievance-number"></p>
+    <textarea id="reply-text" rows="4" placeholder="Enter your reply here..."></textarea>
+    
+    <!-- Cancel Button -->
+    <button id="cancel-reply" class="cancel-button">Cancel</button>
+
+    <!-- Submit Button -->
+    <button id="submit-reply" class="close-modal">Submit Reply</button>
+
+    <div id="reply-success" class="success-message" style="display: none; margin-top: 10px; color: green;">Reply submitted successfully!</div>
+</div>
+
+<!-- View Feedback and Replies Modal -->
+<div id="view-feedback-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-feedback-modal" class="close">&times;</span>
+        <h3>Grievance Replies & Feedback</h3>
+        
+        <!-- Displaying all admin replies -->
+        <div id="view-replies-container">
+            <!-- Replies will be dynamically inserted here -->
+        </div>
+
+        <!-- Displaying feedback -->
+        <div id="view-feedback">
+            <!-- Feedback will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal overlay for closing -->
+<div id="modal-overlay-view" class="modal-overlay"></div>
+
+<script type="module">
+    // Import Firebase SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getDatabase, ref, set, update, get, onValue,remove } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAWfUozol7OfQTfL0T8hKVOPuc5xnrKLrA",
+    authDomain: "grievance-redressal-syst-90620.firebaseapp.com",
+    databaseURL: "https://grievance-redressal-syst-90620-default-rtdb.firebaseio.com",
+    projectId: "grievance-redressal-syst-90620",
+    storageBucket: "grievance-redressal-syst-90620.appspot.com",
+    messagingSenderId: "992036570800",
+    appId: "1:992036570800:web:d638b0fcac8e70aba91d75",
+    measurementId: "G-Q2MRYNXFT8"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth(app);
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayGrievances();
+    document.getElementById('search-bar').addEventListener('input', filterGrievances);
+});
+
+function filterGrievances() {
+    const searchQuery = document.getElementById('search-bar').value.trim().toLowerCase();
+    displayGrievances(searchQuery);
+}
+
+// Function to display all grievances from Firebase
+function displayGrievances(searchQuery = '') {
+    const tbody = document.querySelector('#grievance-table tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const grievancesRef = ref(database, 'grievances');
+    onValue(grievancesRef, (snapshot) => {
+        tbody.innerHTML = '';
+        if (snapshot.exists()) {
+            let grievancesArray = [];
+
+            snapshot.forEach(userSnapshot => {
+                userSnapshot.forEach(grievanceSnapshot => {
+                    const grievance = grievanceSnapshot.val();
+                    if (!grievance) return;
+
+                    grievancesArray.push({
+                        key: `${userSnapshot.key}/${grievanceSnapshot.key}`,
+                        data: grievance
+                    });
+                });
+            });
+
+           
+  // Sort only by date (newest first)
+  grievancesArray.sort((a, b) => {
+                const dateA = new Date(a.data.grievanceDate).getTime() || 0;
+                const dateB = new Date(b.data.grievanceDate).getTime() || 0;
+
+                return dateB - dateA; // Newest grievances first
+            });
+
+            // If search query is provided, bring matching items to the top
+if (searchQuery) {
+    grievancesArray.sort((a, b) => {
+        const aMatchID = a.data.grievantID.toLowerCase().includes(searchQuery) ? -1 : 1;
+        const bMatchID = b.data.grievantID.toLowerCase().includes(searchQuery) ? -1 : 1;
+
+        const aMatchName = a.data.grievantName.toLowerCase().includes(searchQuery) ? -1 : 1;
+        const bMatchName = b.data.grievantName.toLowerCase().includes(searchQuery) ? -1 : 1;
+
+        // Give priority if either ID or name matches
+        const aPriority = Math.min(aMatchID, aMatchName);
+        const bPriority = Math.min(bMatchID, bMatchName);
+
+        return aPriority - bPriority;
+    });
+}
+
+
+            let index = 0;
+            grievancesArray.forEach(grievanceObj => {
+                const grievance = grievanceObj.data;
+                const grievanceKey = grievanceObj.key;
+                index++;
+                const row = document.createElement('tr');
+
+                // Check if it matches the search query
+                const isMatch = grievance.grievantID.toLowerCase().includes(searchQuery) ||
+                                grievance.grievantName.toLowerCase().includes(searchQuery);
+
+                // Add blink class if it's a match
+                if (searchQuery && isMatch) {
+                    row.classList.add('blink');
+                }
+
+
+                row.innerHTML = `
+                    <td>${index}</td>
+                    <td>${grievance.grievanceNumber || 'N/A'}</td>
+                    <td>${grievance.grievantType || 'N/A'}</td>
+                    <td>${grievance.grievantID || 'N/A'}</td>
+                    <td>${grievance.grievantName || 'N/A'}</td>
+                    <td>${grievance.grievanceDate || 'N/A'}</td>
+                    <td>${grievance.grievanceTitle || 'N/A'}</td>
+                    <td>${grievance.grievanceDescription || 'N/A'}</td>
+                    <td class="status-cell" data-key="${grievanceKey}">${grievance.status || ''}</td>
+                     <td>
+                        ${grievance.status !== 'Satisfied' ? `<button class="reply-button" data-key="${grievanceKey}">Reply</button>` : ''}
+                        <button class="show-button" data-key="${grievanceKey}">Show</button>
+                        ${grievance.status === 'Satisfied' ? `<button class="delete-button" data-key="${grievanceKey}">Delete</button>` : ''}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            document.querySelectorAll('.reply-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    showReplyModal(this.getAttribute('data-key'));
+                });
+            });
+
+            document.querySelectorAll('.show-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    showReplyAndFeedback(this.getAttribute('data-key'));
+                });
+            });
+
+              // Attach event listeners to Delete buttons
+              document.querySelectorAll('.delete-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const grievanceKey = this.getAttribute('data-key');
+                    deleteGrievance(grievanceKey);
+                });
+            });
+
+        } else {
+            tbody.innerHTML = '<tr><td colspan="10">No grievances available.</td></tr>';
+        }
+    });
+}
+
+
+// Function to delete grievance from Firebase
+function deleteGrievance(grievanceKey) {
+    if (confirm("Are you sure you want to delete this grievance?")) {
+        const grievanceRef = ref(database, `grievances/${grievanceKey}`);
+        set(grievanceRef, null).then(() => {
+            alert("Grievance deleted successfully!");
+            displayGrievances(); // Refresh the table
+        }).catch(error => {
+            console.error("Error deleting grievance:", error);
+        });
+    }
+}
+
+// Function to show replies and feedback
+function showReplyAndFeedback(grievanceKey) {
+    const grievanceRef = ref(database, `grievances/${grievanceKey}`);
+    get(grievanceRef).then(snapshot => {
+        if (snapshot.exists()) {
+            const grievance = snapshot.val();
+            const repliesContainer = document.getElementById('view-replies-container');
+            if (!repliesContainer) return;
+
+            repliesContainer.innerHTML = grievance.replies ? grievance.replies.map(reply => `
+                <div class='reply-item'><strong>${reply.user}:</strong> <p>${reply.date} - ${reply.message}</p></div>
+            `).join('') : '<p>No replies yet.</p>';
+
+            document.getElementById('view-feedback-modal').style.display = 'block';
+            document.getElementById('modal-overlay-view').style.display = 'block';
+        }
+    }).catch(error => console.error("Error fetching grievance details:", error));
+}
+
+// Function to show reply modal
+function showReplyModal(grievanceKey) {
+    document.getElementById('modal-grievance-number').setAttribute('data-key', grievanceKey);
+    document.getElementById('reply-text').value = '';
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal-overlay').style.display = 'block';
+}
+
+// Submit reply
+document.getElementById('submit-reply').addEventListener('click', function () {
+    const replyText = document.getElementById('reply-text').value.trim();
+    if (!replyText) return alert('Please enter a reply.');
+
+    const grievanceKey = document.getElementById('modal-grievance-number').getAttribute('data-key');
+    const grievanceRef = ref(database, `grievances/${grievanceKey}`);
+    
+    get(grievanceRef).then(snapshot => {
+        if (snapshot.exists()) {
+            const grievance = snapshot.val();
+            const newReply = {
+                user: "Admin Reply",
+                date: new Date().toLocaleDateString(),
+                message: replyText
+            };
+            update(grievanceRef, {
+                replies: grievance.replies ? [...grievance.replies, newReply] : [newReply],
+                status: 'Closed'
+            }).then(() => {
+                // Show success message
+                const successMessage = document.getElementById('reply-success');
+                successMessage.style.display = 'block';
+
+                // Hide modal and overlay after a delay
+                setTimeout(() => {
+                    document.getElementById('modal').style.display = 'none';
+                    document.getElementById('modal-overlay').style.display = 'none';
+                    successMessage.style.display = 'none'; // Hide success message after modal closes
+                }, 2000); // Show message for 2 seconds
+
+                // Re-fetch and update grievances
+                displayGrievances();
+            }).catch(error => console.error("Error updating grievance:", error));
+        }
+    }).catch(error => console.error("Error fetching grievance details:", error));
+});
+
+// Close modals
+document.getElementById('cancel-reply').addEventListener('click', () => {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modal-overlay').style.display = 'none';
+});
+
+document.getElementById('close-feedback-modal').addEventListener('click', () => {
+    document.getElementById('view-feedback-modal').style.display = 'none';
+    document.getElementById('modal-overlay-view').style.display = 'none';
+});
+document.addEventListener('DOMContentLoaded', displayGrievances);
+
+
+
+  // Function to fetch and display contact messages from Firebase
+  function fetchContactMessages() {
+        const contactMessagesTable = document.getElementById("contactMessagesTable");
+        contactMessagesTable.innerHTML = ""; // Clear previous data
+
+        const messagesRef = ref(database, "contactMessages"); // Reference to Firebase path
+
+        onValue(messagesRef, (snapshot) => {
+            contactMessagesTable.innerHTML = ""; // Clear table before adding new data
+
+            if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                    const msg = childSnapshot.val();
+                    const messageId = childSnapshot.key; // Get unique ID of the message
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${msg.name}</td>
+                        <td>${msg.email}</td>
+                        <td>${msg.subject}</td>
+                        <td>${msg.message}</td>
+                        <td>${msg.date}</td>
+                        <td>
+                             <button class="delete-btns" onclick="deleteMessage('${messageId}')">
+                                <i class="fas fa-trash"></i> <!-- Trash Bin Icon -->
+                            </button>
+                        </td>
+                    `;
+                    contactMessagesTable.appendChild(row);
+                });
+            } else {
+                contactMessagesTable.innerHTML = "<tr><td colspan='6'>No messages found.</td></tr>";
+            }
+        });
+    }
+
+    // Function to delete a message from Firebase
+    window.deleteMessage = function (messageId) {
+        if (confirm("Are you sure you want to delete this message?")) {
+            const messageRef = ref(database, `contactMessages/${messageId}`);
+            remove(messageRef)
+                .then(() => {
+                    alert("Message deleted successfully!");
+                    fetchContactMessages(); // Refresh table after deletion
+                })
+                .catch((error) => {
+                    console.error("Error deleting message:", error);
+                    alert("Failed to delete message. Please try again.");
+                });
+        }
+    };
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", fetchContactMessages);
+
+</script>
+
+        
+
+        <!-- All Grievance Members Section -->
+         <!-- All Grievance Members Section -->
+    <div class="content-section" id="all-grievance-members">
+        <h4>All Grievance Members</h4>
+        <table id="members-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Member Name</th>
+                    <th>Gender</th>
+                    <th>Designation</th>
+                    <th>Email</th>
+                    <th>Mobile No.</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+        <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+    </div>
+ </div>
+
+<script type="module" src="scriptAdmin.js"></script>
+<script>
+    function signOut() {
+        // Sign-out logic
+        alert('Are you sure you want to log out.');
+        window.location.href = 'index.html'; // Adjust the path to your login page
+    }
+</script>
+
+
+
+<script>
+const sidebar = document.querySelector(".sidebar");
+const toggler = document.querySelector(".mobile-toggler");
+const sidebarLinks = document.querySelectorAll(".sidebar a"); // Removed .dropdown
+const dropdowns = document.querySelectorAll(".dropdown"); // Query for dropdowns
+
+/* Function to Toggle Sidebar */
+function toggleSidebar() {
+    sidebar.classList.toggle("active");
+}
+
+/* Hide Sidebar When Clicking a Link (Not Inside Dropdown) */
+sidebarLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        // Check if the clicked element is not inside a dropdown or is a link
+        if (!e.target.closest('.dropdown')) {
+            sidebar.classList.remove("active");
+        }
+    });
+});
+
+/* Hide Sidebar When Clicking a Dropdown Item */
+dropdowns.forEach(dropdown => {
+    const dropdownContent = dropdown.querySelector(".dropdown-content");
+    
+    dropdown.addEventListener("click", (e) => {
+        // Toggle dropdown content visibility
+        dropdownContent.classList.toggle("active");
+
+        // Prevent the event from propagating to the sidebarLinks click listener
+        e.stopPropagation();
+    });
+
+    // Hide sidebar if clicking outside the dropdown (on sidebar or anywhere else)
+    dropdownContent.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+    });
+});
+
+
+
+
+</script>
+
+</body>
+</html>
