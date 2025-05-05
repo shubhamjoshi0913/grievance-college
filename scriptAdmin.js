@@ -3,16 +3,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebas
 import { getDatabase, ref, set, get, push, remove,update, child,onValue} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 import { getAuth,EmailAuthProvider, updatePassword, createUserWithEmailAndPassword,deleteUser,sendEmailVerification,reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 // Your Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAWfUozol7OfQTfL0T8hKVOPuc5xnrKLrA",
-    authDomain: "grievance-redressal-syst-90620.firebaseapp.com",
-    databaseURL: "https://grievance-redressal-syst-90620-default-rtdb.firebaseio.com",
-    projectId: "grievance-redressal-syst-90620",
-    storageBucket: "grievance-redressal-syst-90620.appspot.com",
-    messagingSenderId: "992036570800",
-    appId: "1:992036570800:web:d638b0fcac8e70aba91d75",
-    measurementId: "G-Q2MRYNXFT8"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyAR32bj0NE3n-RxdVT88ShVYcuZsXapVHM",
+    authDomain: "grievance-eb3e4.firebaseapp.com",
+    projectId: "grievance-eb3e4",
+    storageBucket: "grievance-eb3e4.firebasestorage.app",
+    messagingSenderId: "1078620464777",
+    appId: "1:1078620464777:web:5a00f8d1bd2b0859d4c858",
+    measurementId: "G-NT5SNF5ZXF"
+  };
 
 // Initialize Firebase and database
 const app = initializeApp(firebaseConfig);
